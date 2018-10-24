@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userpet/screens/login_screen.dart';
+import './edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -22,6 +23,12 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditProfileScreen()),
+                      );
+                    },
                     child: Text("Ubah"),
                   ),
                   flex: 1,
