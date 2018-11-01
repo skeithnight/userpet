@@ -13,6 +13,7 @@ class DashboardMenuRow extends StatelessWidget {
   final thirdLabel;
   final IconData thirdIcon;
   final thirdIconCircleColor;
+  final onpressed;
 
   const DashboardMenuRow({
     Key key,
@@ -24,7 +25,7 @@ class DashboardMenuRow extends StatelessWidget {
     this.secondIconCircleColor,
     this.thirdLabel,
     this.thirdIcon,
-    this.thirdIconCircleColor,
+    this.thirdIconCircleColor, this.onpressed
   }) : super(key: key);
 
   void _clickMenu(){
@@ -44,7 +45,7 @@ class DashboardMenuRow extends StatelessWidget {
               icon: firstIcon,
               label: firstLabel,
               circleColor: firstIconCircleColor,
-              onPressed: _clickMenu,
+              onPressed: onpressed,
             ),
           ),
           Expanded(
