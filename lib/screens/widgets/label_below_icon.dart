@@ -10,10 +10,6 @@ class LabelBelowIcon extends StatelessWidget {
   final isCircleEnabled;
   final betweenHeight;
 
-  _adada(a){
-    print(a);
-  }
-
   LabelBelowIcon(
       {this.label,
       this.icon,
@@ -25,7 +21,9 @@ class LabelBelowIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onPressed,
+      onTap: () {
+        print("woi 1");
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

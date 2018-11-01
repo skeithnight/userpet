@@ -6,6 +6,7 @@ import 'package:userpet/screens/shopping/shopping_one_page.dart';
 class DashboardMenuRow extends StatelessWidget {
   final firstLabel;
   final IconData firstIcon;
+  final firstPressed;
   final firstIconCircleColor;
   final secondLabel;
   final IconData secondIcon;
@@ -13,28 +14,29 @@ class DashboardMenuRow extends StatelessWidget {
   final thirdLabel;
   final IconData thirdIcon;
   final thirdIconCircleColor;
-  final onpressed;
 
-  const DashboardMenuRow({
-    Key key,
-    this.firstLabel,
-    this.firstIcon,
-    this.firstIconCircleColor,
-    this.secondLabel,
-    this.secondIcon,
-    this.secondIconCircleColor,
-    this.thirdLabel,
-    this.thirdIcon,
-    this.thirdIconCircleColor, this.onpressed
-  }) : super(key: key);
-
-  void _clickMenu(){
-    print("adadada");
-  }
+  const DashboardMenuRow(
+      {Key key,
+      this.firstLabel,
+      this.firstIcon,
+      this.firstPressed,
+      this.firstIconCircleColor,
+      this.secondLabel,
+      this.secondIcon,
+      this.secondIconCircleColor,
+      this.thirdLabel,
+      this.thirdIcon,
+      this.thirdIconCircleColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return InkWell(
+      onTap: () {
+        print("woi 2");
+      },
+      child:
+      Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,7 +47,6 @@ class DashboardMenuRow extends StatelessWidget {
               icon: firstIcon,
               label: firstLabel,
               circleColor: firstIconCircleColor,
-              onPressed: onpressed,
             ),
           ),
           Expanded(
@@ -53,17 +54,17 @@ class DashboardMenuRow extends StatelessWidget {
             icon: secondIcon,
             label: secondLabel,
             circleColor: secondIconCircleColor,
-            onPressed: {},
           )),
           Expanded(
               child: LabelBelowIcon(
             icon: thirdIcon,
             label: thirdLabel,
             circleColor: thirdIconCircleColor,
-            onPressed: () {},
           )),
         ],
       ),
-    );
+    )
+  );
   }
+    
 }

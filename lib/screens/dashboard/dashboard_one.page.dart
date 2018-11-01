@@ -92,7 +92,7 @@ class DashboardOnePage extends StatelessWidget {
                     secondIconCircleColor: Colors.orange,
                     thirdIcon: FontAwesomeIcons.mapMarkerAlt,
                     thirdLabel: "Vitamin",
-                    thirdIconCircleColor: Colors.purple, onpressed: void adada(){},
+                    thirdIconCircleColor: Colors.purple
                   ),
                   DashboardMenuRow(
                     firstIcon: FontAwesomeIcons.images,
@@ -175,7 +175,7 @@ class DashboardOnePage extends StatelessWidget {
           ],
         ),
       );
-
+  
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
@@ -191,4 +191,5 @@ class DashboardOnePage extends StatelessWidget {
       ),
     );
   }
+  
 }
