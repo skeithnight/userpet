@@ -6,37 +6,36 @@ import 'package:userpet/screens/shopping/shopping_one_page.dart';
 class DashboardMenuRow extends StatelessWidget {
   final firstLabel;
   final IconData firstIcon;
-  final firstPressed;
   final firstIconCircleColor;
+  final String firstValueRoute;
   final secondLabel;
   final IconData secondIcon;
   final secondIconCircleColor;
+  final String secondValueRoute;
   final thirdLabel;
   final IconData thirdIcon;
   final thirdIconCircleColor;
+  final String thirdValueRoute;
 
-  const DashboardMenuRow(
-      {Key key,
-      this.firstLabel,
-      this.firstIcon,
-      this.firstPressed,
-      this.firstIconCircleColor,
-      this.secondLabel,
-      this.secondIcon,
-      this.secondIconCircleColor,
-      this.thirdLabel,
-      this.thirdIcon,
-      this.thirdIconCircleColor})
-      : super(key: key);
+  const DashboardMenuRow({
+    Key key,
+    this.firstLabel,
+    this.firstIcon,
+    this.firstIconCircleColor,
+    this.firstValueRoute,
+    this.secondLabel,
+    this.secondIcon,
+    this.secondIconCircleColor,
+    this.secondValueRoute,
+    this.thirdLabel,
+    this.thirdIcon,
+    this.thirdIconCircleColor,
+    this.thirdValueRoute,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("woi 2");
-      },
-      child:
-      Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -47,6 +46,7 @@ class DashboardMenuRow extends StatelessWidget {
               icon: firstIcon,
               label: firstLabel,
               circleColor: firstIconCircleColor,
+              valueRoute: firstValueRoute,
             ),
           ),
           Expanded(
@@ -54,17 +54,17 @@ class DashboardMenuRow extends StatelessWidget {
             icon: secondIcon,
             label: secondLabel,
             circleColor: secondIconCircleColor,
+            valueRoute: secondValueRoute,
           )),
           Expanded(
               child: LabelBelowIcon(
             icon: thirdIcon,
             label: thirdLabel,
             circleColor: thirdIconCircleColor,
+            valueRoute: thirdValueRoute,
           )),
         ],
       ),
-    )
-  );
+    );
   }
-    
 }

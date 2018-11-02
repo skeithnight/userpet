@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:userpet/logic/bloc/product_bloc.dart';
 import 'package:userpet/models/product.dart';
@@ -6,6 +7,8 @@ import 'package:userpet/screens/widgets/common_scaffold.dart';
 class ShoppingOnePage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   BuildContext _context;
+
+  final formatCurrency = new NumberFormat.simpleCurrency();
 
   //stack1
   Widget imageStack(String img) => Image.network(
@@ -33,7 +36,7 @@ class ShoppingOnePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                Text(product.price,
+                Text( '${formatCurrency.format(product.price)}',
                     style: TextStyle(
                         color: Colors.yellow,
                         fontSize: 18.0,

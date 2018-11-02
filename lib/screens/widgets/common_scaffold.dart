@@ -105,7 +105,6 @@ class CommonScaffold extends StatelessWidget {
           )
         ],
       ),
-      drawer: showDrawer ? CommonDrawer() : null,
       body: bodyData,
       floatingActionButton: showFAB
           ? CustomFloat(

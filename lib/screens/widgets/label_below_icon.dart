@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:userpet/utils/uidata.dart';
+import 'package:userpet/screens/shopping/shopping_one_page.dart';
 
 class LabelBelowIcon extends StatelessWidget {
   final label;
   final IconData icon;
   final iconColor;
-  final onPressed;
+  final valueRoute;
   final circleColor;
   final isCircleEnabled;
   final betweenHeight;
@@ -13,17 +14,22 @@ class LabelBelowIcon extends StatelessWidget {
   LabelBelowIcon(
       {this.label,
       this.icon,
-      this.onPressed,
+      this.valueRoute,
       this.iconColor = Colors.white,
       this.circleColor,
       this.isCircleEnabled = true,
       this.betweenHeight = 5.0});
+
+  routing(context,valueRoute){
+    if(valueRoute == "Makanan" || valueRoute == "Accesories"|| valueRoute == "Vitamin"){
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShoppingOnePage()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("woi 1");
-      },
+    return InkWell( 
+      onTap: () => routing(context,valueRoute),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
