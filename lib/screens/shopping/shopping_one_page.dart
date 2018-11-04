@@ -4,11 +4,14 @@ import 'package:userpet/logic/bloc/product_bloc.dart';
 import 'package:userpet/models/product.dart';
 import 'package:userpet/screens/widgets/common_scaffold.dart';
 
+import 'product_detail_page.dart';
+import 'shopping_details_page.dart';
+
 class ShoppingOnePage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   BuildContext _context;
 
-  final formatCurrency = new NumberFormat.simpleCurrency();
+  final formatCurrency = new NumberFormat.simpleCurrency(name: "IDR");
 
   //stack1
   Widget imageStack(String img) => Image.network(
@@ -36,7 +39,7 @@ class ShoppingOnePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                Text( '${formatCurrency.format(product.price)}',
+                Text('${formatCurrency.format(int.parse(product.price))}',
                     style: TextStyle(
                         color: Colors.yellow,
                         fontSize: 18.0,
@@ -86,7 +89,8 @@ class ShoppingOnePage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     splashColor: Colors.yellow,
-                    onDoubleTap: () => showSnackBar(),
+                    onTap: () => productDetail(product),
+                    // onDoubleTap: () => showSnackBar(),
                     child: Material(
                       clipBehavior: Clip.antiAlias,
                       elevation: 2.0,
@@ -95,7 +99,7 @@ class ShoppingOnePage extends StatelessWidget {
                         children: <Widget>[
                           imageStack(product.image),
                           descStack(product),
-                          ratingStack(product.rating),
+                          // ratingStack(product.rating),
                         ],
                       ),
                     ),
@@ -113,6 +117,11 @@ class ShoppingOnePage extends StatelessWidget {
               ? productGrid(snapshot.data)
               : Center(child: CircularProgressIndicator());
         });
+  }
+
+  void productDetail(Product data) {
+    Navigator.of(_context)
+        .push(MaterialPageRoute(builder: ((context) => ShoppingDetailsPage(data))));
   }
 
   void showSnackBar() {
@@ -133,8 +142,8 @@ class ShoppingOnePage extends StatelessWidget {
     return CommonScaffold(
       scaffoldKey: scaffoldKey,
       appTitle: "Products",
-      showDrawer: true,
-      showFAB: false,
+      showDrawer: false,
+      showFAB: true,
       actionFirstIcon: Icons.shopping_cart,
       bodyData: bodyData(),
     );

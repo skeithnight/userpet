@@ -119,7 +119,7 @@ class ShoppingWidgets extends StatelessWidget {
           mainCard(),
           imagesCard(),
           descCard(),
-          actionCard(),
+          // actionCard(),
         ],
       ),
     );

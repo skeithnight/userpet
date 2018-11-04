@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:userpet/models/product.dart';
 
@@ -7,6 +8,7 @@ class ProductDesc extends StatelessWidget {
   const ProductDesc({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = new NumberFormat.simpleCurrency(name: "IDR");
     return SingleChildScrollView(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +30,7 @@ class ProductDesc extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.normal),
               ),
-              trailing: new Text(product.price,
+              trailing: new Text('${formatCurrency.format(int.parse(product.price))}',
                   style: new TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,

@@ -8,28 +8,35 @@ import 'package:userpet/screens/shopping/shopping_two/product_detail_widgets.dar
 import 'package:userpet/screens/widgets/login_background.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  Widget productScaffold(Stream<List<Product>> products) => new Scaffold(
+  Product productData = Product();
+
+  ProductDetailPage(Product data) {
+    this.productData = data;
+  }
+
+  Widget productScaffold(Product products) => new Scaffold(
       backgroundColor: new Color(0xffeeeeee),
-      body: StreamBuilder<List<Product>>(
-          stream: products,
-          builder: (context, snapshot) {
-            return snapshot.hasData
-                ? Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      LoginBackground(
-                        showIcon: false,
-                      ),
-                      ProductDetailWidgets(product:snapshot.data[0]),
-                    ],
-                  )
-                : Center(child: CircularProgressIndicator());
-          }));
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          LoginBackground(
+            showIcon: false,
+          ),
+          ProductDetailWidgets(product: productData),
+        ],
+      ));
   @override
   Widget build(BuildContext context) {
-    ProductBloc productBloc = ProductBloc();
-    return ProductProvider(
-        productBloc: productBloc,
-        child: productScaffold(productBloc.productItems));
+    return new Scaffold(
+        backgroundColor: new Color(0xffeeeeee),
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            LoginBackground(
+              showIcon: false,
+            ),
+            ProductDetailWidgets(product: productData),
+          ],
+        ));
   }
 }

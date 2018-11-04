@@ -11,23 +11,38 @@ import 'package:userpet/screens/widgets/login_background.dart';
 class ShoppingDetailsPage extends StatelessWidget {
   final _scaffoldState = GlobalKey<ScaffoldState>();
 
-  Widget bodyData(Stream<List<Product>> products) =>
-      StreamBuilder<List<Product>>(
-          stream: products,
-          builder: (context, snapshot) {
-            return snapshot.hasData
-                ? Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      LoginBackground(
-                        showIcon: false,
-                        image: snapshot.data[0].image,
-                      ),
-                      ShoppingWidgets(product: snapshot.data[0]),
-                    ],
-                  )
-                : Center(child: CircularProgressIndicator());
-          });
+  Product productData = Product();
+
+  ShoppingDetailsPage(Product data) {
+    this.productData = data;
+  }
+
+  // Widget bodyData(Product products) => StreamBuilder<Product>(
+  //     builder: (context, snapshot) {
+  //       return snapshot.hasData
+  //           ? Stack(
+  //               fit: StackFit.expand,
+  //               children: <Widget>[
+  //                 LoginBackground(
+  //                   showIcon: false,
+  //                   image: snapshot.data.image,
+  //                 ),
+  //                 ShoppingWidgets(product: snapshot.data),
+  //               ],
+  //             )
+  //           : Center(child: CircularProgressIndicator());
+  //     });
+
+  Widget bodyData(Product productData) => new Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          LoginBackground(
+            showIcon: false,
+            image: productData.image,
+          ),
+          ShoppingWidgets(product: productData),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +58,7 @@ class ShoppingDetailsPage extends StatelessWidget {
         showDrawer: false,
         centerDocked: true,
         floatingIcon: Icons.add_shopping_cart,
-        bodyData: bodyData(productBloc.productItems),
+        bodyData: bodyData(productData),
         showBottomNav: true,
       ),
     );
