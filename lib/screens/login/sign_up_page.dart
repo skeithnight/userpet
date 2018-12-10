@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:userpet/utils/uidata.dart';
 
-import 'package:userpet/main.dart';
-import 'sign_up_page.dart';
+import 'login_two_page.dart';
 
-class LoginTwoPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  Size deviceSize;
   @override
   Widget build(BuildContext context) {
+    deviceSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: loginBody(context),
+        child: signUpBody(context),
       ),
     );
   }
 
-  loginBody(context) => SingleChildScrollView(
+  signUpBody(context) => SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[loginHeader(), loginFields(context)],
+          children: <Widget>[signUpHeader(), signUpFields(context)],
         ),
       );
 
-  loginHeader() => Column(
+  signUpHeader() => Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           FlutterLogo(
@@ -32,25 +37,32 @@ class LoginTwoPage extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          Text(
-            "Welcome to ${UIData.appName}",
-            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
-          ),
           SizedBox(
             height: 5.0,
           ),
           Text(
-            "Sign in to continue",
+            "Sign Up",
             style: TextStyle(color: Colors.grey),
           ),
         ],
       );
 
-  loginFields(context) => Container(
+  signUpFields(context) => Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
+              child: TextField(
+                maxLines: 1,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: "Enter your email",
+                  labelText: "Email",
+                ),
+              ),
+            ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
               child: TextField(
@@ -72,6 +84,17 @@ class LoginTwoPage extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
+              child: TextField(
+                maxLines: 1,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  hintText: "Enter your phone number",
+                  labelText: "Phone Number",
+                ),
+              ),
+            ),
             SizedBox(
               height: 30.0,
             ),
@@ -82,13 +105,15 @@ class LoginTwoPage extends StatelessWidget {
                 padding: EdgeInsets.all(12.0),
                 shape: StadiumBorder(),
                 child: Text(
-                  "SIGN IN",
+                  "SIGN UP",
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.green,
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: ((context) => MyApp())));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => LoginTwoPage())));
                 },
               ),
             ),
@@ -97,11 +122,11 @@ class LoginTwoPage extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => SignUpPage())));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: ((context) => LoginTwoPage())));
               },
               child: Text(
-                "SIGN UP FOR AN ACCOUNT",
+                "Already have an account",
                 style: TextStyle(color: Colors.grey),
               ),
             )

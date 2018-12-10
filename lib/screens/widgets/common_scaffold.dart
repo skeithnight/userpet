@@ -5,6 +5,7 @@ import 'package:userpet/utils/uidata.dart';
 
 class CommonScaffold extends StatelessWidget {
   final appTitle;
+  final actionApp;
   final Widget bodyData;
   final showFAB;
   final showDrawer;
@@ -18,6 +19,7 @@ class CommonScaffold extends StatelessWidget {
 
   CommonScaffold(
       {this.appTitle,
+      this.actionApp = true,
       this.bodyData,
       this.showFAB = false,
       this.showDrawer = false,
@@ -95,14 +97,18 @@ class CommonScaffold extends StatelessWidget {
           SizedBox(
             width: 5.0,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(actionFirstIcon),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_vert),
-          )
+          actionApp == true
+              ? IconButton(
+                  onPressed: () {},
+                  icon: Icon(actionFirstIcon),
+                )
+              : Container(),
+          actionApp == true
+              ? IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.more_vert),
+                )
+              : Container(),
         ],
       ),
       body: bodyData,
