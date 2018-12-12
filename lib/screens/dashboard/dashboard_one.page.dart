@@ -7,7 +7,6 @@ import 'package:userpet/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:userpet/screens/login/login_two_page.dart';
-import 'package:userpet/screens/profile/profile_two_page.dart';
 
 class DashboardOnePage extends StatelessWidget {
   Size deviceSize;
@@ -26,10 +25,6 @@ class DashboardOnePage extends StatelessWidget {
                     textColor: Colors.white,
                   ),
                   new PopupMenuButton(
-                      icon: Icon(
-                        Icons.more_vert,
-                        color: Colors.white,
-                      ),
                       elevation: 5.0,
                       itemBuilder: (_) => <PopupMenuItem<String>>[
                             new PopupMenuItem<String>(
@@ -43,9 +38,6 @@ class DashboardOnePage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => LoginTwoPage())));
-                        } else {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProfileTwoPage()));
                         }
                       }),
                 ],
@@ -94,30 +86,24 @@ class DashboardOnePage extends StatelessWidget {
                   DashboardMenuRow(
                     firstIcon: FontAwesomeIcons.solidUser,
                     firstLabel: "Makanan",
-                    firstIconCircleColor: Colors.blue,
-                    firstValueRoute: "Makanan",
+                    firstIconCircleColor: Colors.blue, firstValueRoute: "Makanan",
                     secondIcon: FontAwesomeIcons.userFriends,
                     secondLabel: "Accesories",
-                    secondIconCircleColor: Colors.orange,
-                    secondValueRoute: "Accesories",
+                    secondIconCircleColor: Colors.orange, secondValueRoute: "Accesories",
                     thirdIcon: FontAwesomeIcons.mapMarkerAlt,
                     thirdLabel: "Vitamin",
-                    thirdIconCircleColor: Colors.purple,
-                    thirdValueRoute: "Vitamin",
+                    thirdIconCircleColor: Colors.purple, thirdValueRoute: "Vitamin",
                   ),
                   DashboardMenuRow(
                     firstIcon: FontAwesomeIcons.images,
                     firstLabel: "Hotel",
-                    firstIconCircleColor: Colors.red,
-                    firstValueRoute: "Hotel",
+                    firstIconCircleColor: Colors.red, firstValueRoute: "Hotel",
                     secondIcon: FontAwesomeIcons.solidHeart,
                     secondLabel: "Klinik",
-                    secondIconCircleColor: Colors.teal,
-                    secondValueRoute: "Klinik",
+                    secondIconCircleColor: Colors.teal, secondValueRoute: "Klinik",
                     thirdIcon: FontAwesomeIcons.solidNewspaper,
                     thirdLabel: "Grooming",
-                    thirdIconCircleColor: Colors.lime,
-                    thirdValueRoute: "Grooming",
+                    thirdIconCircleColor: Colors.lime, thirdValueRoute: "Grooming",
                   ),
                 ],
               ),
@@ -189,7 +175,7 @@ class DashboardOnePage extends StatelessWidget {
           ],
         ),
       );
-
+  
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
@@ -205,4 +191,5 @@ class DashboardOnePage extends StatelessWidget {
       ),
     );
   }
+  
 }
