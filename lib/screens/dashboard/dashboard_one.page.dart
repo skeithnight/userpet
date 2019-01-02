@@ -92,20 +92,6 @@ class DashboardOnePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   DashboardMenuRow(
-                    firstIcon: FontAwesomeIcons.solidUser,
-                    firstLabel: "Makanan",
-                    firstIconCircleColor: Colors.blue,
-                    firstValueRoute: "Makanan",
-                    secondIcon: FontAwesomeIcons.userFriends,
-                    secondLabel: "Accesories",
-                    secondIconCircleColor: Colors.orange,
-                    secondValueRoute: "Accesories",
-                    thirdIcon: FontAwesomeIcons.mapMarkerAlt,
-                    thirdLabel: "Vitamin",
-                    thirdIconCircleColor: Colors.purple,
-                    thirdValueRoute: "Vitamin",
-                  ),
-                  DashboardMenuRow(
                     firstIcon: FontAwesomeIcons.images,
                     firstLabel: "Hotel",
                     firstIconCircleColor: Colors.red,

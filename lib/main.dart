@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:userpet/routes.dart';
 
+import 'data.dart' as data1;
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'My Login App',
+      title: data1.appName,
       theme: new ThemeData(
         primarySwatch: Colors.red,
       ),

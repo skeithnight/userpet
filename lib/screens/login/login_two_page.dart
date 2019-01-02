@@ -3,8 +3,16 @@ import 'package:userpet/utils/uidata.dart';
 
 import 'package:userpet/main.dart';
 import 'sign_up_page.dart';
+import 'package:userpet/models/model/customer_model.dart';
+import 'package:userpet/controllers/login_controller.dart';
 
-class LoginTwoPage extends StatelessWidget {
+class LoginTwoPage extends StatefulWidget {
+  _LoginTwoPageState createState() => _LoginTwoPageState();
+}
+
+class _LoginTwoPageState extends State<LoginTwoPage> {
+  Customer customer = new Customer();
+  Size deviceSize;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +63,11 @@ class LoginTwoPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
               child: TextField(
                 maxLines: 1,
+                onChanged: (text) {
+                  setState(() {
+                    this.customer.username = text;
+                  });
+                },
                 decoration: InputDecoration(
                   hintText: "Enter your username",
                   labelText: "Username",
@@ -65,6 +78,11 @@ class LoginTwoPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
               child: TextField(
                 maxLines: 1,
+                onChanged: (text) {
+                  setState(() {
+                    this.customer.password = text;
+                  });
+                },
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Enter your password",
@@ -87,8 +105,9 @@ class LoginTwoPage extends StatelessWidget {
                 ),
                 color: Colors.green,
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: ((context) => MyApp())));
+                  LoginController(context).sendData(customer);
+                  // Navigator.pushReplacement(context,
+                  //     MaterialPageRoute(builder: ((context) => MyApp())));
                 },
               ),
             ),
