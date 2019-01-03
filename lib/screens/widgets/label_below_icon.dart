@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userpet/utils/uidata.dart';
-import 'package:userpet/screens/shopping/shopping_one_page.dart';
+import 'package:userpet/screens/shopping/store_page.dart';
 
 class LabelBelowIcon extends StatelessWidget {
   final label;
@@ -20,16 +20,15 @@ class LabelBelowIcon extends StatelessWidget {
       this.isCircleEnabled = true,
       this.betweenHeight = 5.0});
 
-  routing(context,valueRoute){
-    if(valueRoute == "Makanan" || valueRoute == "Accesories"|| valueRoute == "Vitamin"){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ShoppingOnePage()));
-    }
+  routing(context, valueRoute) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => StorePage(valueRoute)));
   }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell( 
-      onTap: () => routing(context,valueRoute),
+    return InkWell(
+      onTap: () => routing(context, valueRoute),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

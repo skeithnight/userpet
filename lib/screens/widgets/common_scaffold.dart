@@ -103,12 +103,6 @@ class CommonScaffold extends StatelessWidget {
                   icon: Icon(actionFirstIcon),
                 )
               : Container(),
-          actionApp == true
-              ? IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.more_vert),
-                )
-              : Container(),
         ],
       ),
       body: bodyData,

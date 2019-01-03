@@ -5,7 +5,7 @@ class Service {
   String id;
   Petshop petshop;
   String name;
-  String descrition;
+  String description;
   List<String> pictures;
   double price;
 
@@ -16,7 +16,7 @@ class Service {
     id = snapshot["id"];
     petshop = Petshop.fromSnapshot(snapshot["petshop"]);
     name = snapshot["name"];
-    descrition = snapshot["descrition"];
+    description = snapshot["descrition"];
     pictures = snapshot["pictures"];
     price = snapshot["price"];
   }
@@ -26,7 +26,7 @@ class Service {
           "id": idPetshop,
         },
         "name": name,
-        "descrition": descrition,
+        "descrition": description,
         // "pictures": address,
         "price": price,
       };

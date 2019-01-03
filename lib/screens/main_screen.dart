@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
           future: LoginController(context).checkSession(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
-              return DashboardOnePage();
+              return DashboardOnePage(snapshot.data);
             } else if (snapshot.hasError) {
               // throw(snapshot.error);
               return new Center(

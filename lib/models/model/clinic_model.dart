@@ -7,7 +7,7 @@ class Clinic extends Service {
     id = snapshot["id"];
     petshop = Petshop.fromSnapshot(snapshot["petshop"]);
     name = snapshot["name"];
-    descrition = snapshot["descrition"];
+    description = snapshot["description"];
     pictures = snapshot["pictures"];
     price = snapshot["price"];
   }

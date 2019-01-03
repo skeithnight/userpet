@@ -7,8 +7,14 @@ import 'package:userpet/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:userpet/screens/login/login_two_page.dart';
+import 'package:userpet/models/model/customer_model.dart';
+class DashboardOnePage extends StatefulWidget {
+  Customer customer = new Customer();
+  DashboardOnePage(this.customer);
+  _DashboardOnePageState createState() => _DashboardOnePageState();
+}
 
-class DashboardOnePage extends StatelessWidget {
+class _DashboardOnePageState extends State<DashboardOnePage> {
   Size deviceSize;
   Widget appBarColumn(BuildContext context) => SafeArea(
         child: Padding(
@@ -20,7 +26,7 @@ class DashboardOnePage extends StatelessWidget {
                 children: <Widget>[
                   Text(""),
                   new ProfileTile(
-                    title: "Hi, User",
+                    title: "Hi, ${widget.customer.name.split(" ")[0].toUpperCase()}",
                     subtitle: "Welcome to Sahi Pet",
                     textColor: Colors.white,
                   ),
@@ -180,5 +186,4 @@ class DashboardOnePage extends StatelessWidget {
       ),
     );
   }
-  
 }

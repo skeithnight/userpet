@@ -11,34 +11,18 @@ import 'package:userpet/screens/widgets/login_background.dart';
 class ShoppingDetailsPage extends StatelessWidget {
   final _scaffoldState = GlobalKey<ScaffoldState>();
 
-  Product productData = Product();
+  dynamic productData;
 
-  ShoppingDetailsPage(Product data) {
+  ShoppingDetailsPage(data) {
     this.productData = data;
+    print(this.productData.name);
   }
 
-  // Widget bodyData(Product products) => StreamBuilder<Product>(
-  //     builder: (context, snapshot) {
-  //       return snapshot.hasData
-  //           ? Stack(
-  //               fit: StackFit.expand,
-  //               children: <Widget>[
-  //                 LoginBackground(
-  //                   showIcon: false,
-  //                   image: snapshot.data.image,
-  //                 ),
-  //                 ShoppingWidgets(product: snapshot.data),
-  //               ],
-  //             )
-  //           : Center(child: CircularProgressIndicator());
-  //     });
-
-  Widget bodyData(Product productData) => new Stack(
+  Widget bodyData(productData) => new Stack(
         fit: StackFit.expand,
         children: <Widget>[
           LoginBackground(
             showIcon: false,
-            image: productData.image,
           ),
           ShoppingWidgets(product: productData),
         ],
