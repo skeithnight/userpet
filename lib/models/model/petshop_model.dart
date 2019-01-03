@@ -8,7 +8,7 @@ class Petshop {
   double longitude;
   bool enabled;
 
-  Petshop();
+  Petshop(this.name);
 
   Petshop.fromSnapshot(Map<dynamic, dynamic> snapshot)
       : id = snapshot["id"],

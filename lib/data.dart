@@ -4,10 +4,9 @@ var baseURL = "http://{your-ip}";
 var urlRegister = "$baseURL/customer/register";
 var urlLogin = "$baseURL/customer/login";
 var urlCheckSession = "$baseURL/customer/check-session";
-// Courier
+// Courier & petshop
 var urlCourier = "$baseURL/courier";
-var pathCourierRegister = "/register";
-var pathCourierPetshop = "/petshop";
+var urlPetshop = "$baseURL/petshop";
 List<String> listEnabled = ["True", "False"];
 
 

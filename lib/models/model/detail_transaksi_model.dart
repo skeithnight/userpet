@@ -6,7 +6,7 @@ import 'customer_model.dart';
 class DetailTransaksi {
   Service service;
   int jumlah;
-  DetailTransaksi();
+  DetailTransaksi(this.service, this.jumlah);
 
   DetailTransaksi.fromSnapshot(Map<dynamic, dynamic> snapshot)
       : service = snapshot["service"] == null

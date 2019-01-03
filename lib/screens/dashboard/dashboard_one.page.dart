@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:userpet/screens/login/login_two_page.dart';
 import 'package:userpet/models/model/customer_model.dart';
+import 'package:userpet/screens/order/list_order_page.dart';
+
 class DashboardOnePage extends StatefulWidget {
   Customer customer = new Customer();
   DashboardOnePage(this.customer);
@@ -26,26 +28,45 @@ class _DashboardOnePageState extends State<DashboardOnePage> {
                 children: <Widget>[
                   Text(""),
                   new ProfileTile(
-                    title: "Hi, ${widget.customer.name.split(" ")[0].toUpperCase()}",
+                    title:
+                        "Hi, ${widget.customer.name.split(" ")[0].toUpperCase()}",
                     subtitle: "Welcome to Sahi Pet",
                     textColor: Colors.white,
                   ),
-                  new PopupMenuButton(
-                      elevation: 5.0,
-                      itemBuilder: (_) => <PopupMenuItem<String>>[
-                            new PopupMenuItem<String>(
-                                child: const Text('Profile'), value: 'profile'),
-                            new PopupMenuItem<String>(
-                                child: const Text('Logout'), value: 'logout'),
-                          ],
-                      onSelected: (value) {
-                        if (value == 'logout') {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => LoginTwoPage())));
-                        }
-                      }),
+                  new Row(
+                    children: <Widget>[
+                      new IconButton(
+                        icon: Icon(
+                          Icons.description,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => ListOrderPage())));},
+                      ),
+                      new PopupMenuButton(
+                          icon: Icon(Icons.more, color: Colors.white),
+                          elevation: 5.0,
+                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                new PopupMenuItem<String>(
+                                    child: const Text('Profile'),
+                                    value: 'profile'),
+                                new PopupMenuItem<String>(
+                                    child: const Text('Logout'),
+                                    value: 'logout'),
+                              ],
+                          onSelected: (value) {
+                            if (value == 'logout') {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => LoginTwoPage())));
+                            }
+                          }),
+                    ],
+                  )
                 ],
               ),
             ],
@@ -92,13 +113,16 @@ class _DashboardOnePageState extends State<DashboardOnePage> {
                   DashboardMenuRow(
                     firstIcon: FontAwesomeIcons.images,
                     firstLabel: "Hotel",
-                    firstIconCircleColor: Colors.red, firstValueRoute: "Hotel",
+                    firstIconCircleColor: Colors.red,
+                    firstValueRoute: "Hotel",
                     secondIcon: FontAwesomeIcons.solidHeart,
                     secondLabel: "Klinik",
-                    secondIconCircleColor: Colors.teal, secondValueRoute: "Klinik",
+                    secondIconCircleColor: Colors.teal,
+                    secondValueRoute: "Klinik",
                     thirdIcon: FontAwesomeIcons.solidNewspaper,
                     thirdLabel: "Grooming",
-                    thirdIconCircleColor: Colors.lime, thirdValueRoute: "Grooming",
+                    thirdIconCircleColor: Colors.lime,
+                    thirdValueRoute: "Grooming",
                   ),
                 ],
               ),
@@ -170,7 +194,7 @@ class _DashboardOnePageState extends State<DashboardOnePage> {
           ],
         ),
       );
-  
+
   @override
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;

@@ -62,4 +62,35 @@ class Order {
         "note": note,
         "status": statusEdit,
       };
+
+  Map<String, dynamic> toJsonDataPesan(
+          String idCustomer,
+          String idPetshop,
+          List<DetailTransaksi> listGroomings,
+          List<DetailTransaksi> listClinics,
+          List<DetailTransaksi> listHotels) =>
+      {
+        "customer": {"id": idCustomer},
+        "petshop": {"id": idPetshop},
+        "address": address,
+        "latitude": latitude,
+        "longitude": longitude,
+        "from": new DateTime.now().millisecondsSinceEpoch,
+        "groomings": [
+          {
+            "service": {"id": "5c262572535a2354e04bb472"},
+            "jumlah": 2
+          }
+        ],
+        "clinics": [
+          {
+            "service": {"id": "5c262e73535a2354e04bb474"},
+            "jumlah": 1
+          }
+        ],
+        "hotels": null,
+        "to": to,
+        "note": note,
+        "status": "waiting",
+      };
 }

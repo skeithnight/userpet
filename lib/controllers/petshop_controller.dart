@@ -9,10 +9,10 @@ import 'package:userpet/models/model/petshop_model.dart';
 import 'package:userpet/screens/widgets/dialog_widget.dart';
 import 'package:userpet/screens/main_screen.dart';
 
-class CourierController {
+class PetshopController {
   SharedPreferences prefs;
   BuildContext context;
-  CourierController(this.context);
+  PetshopController();
   Dio dio = new Dio();
   Future<String> getToken() async {
     prefs = await SharedPreferences.getInstance();
@@ -20,14 +20,14 @@ class CourierController {
   }
 
   // Get Data
-  Future<List<Petshop>> getData() async {
+  Future<List<Petshop>> getDataPetshop() async {
     prefs = await SharedPreferences.getInstance();
     dio.options.headers = {
       "Authorization": "Bearer " + prefs.getString('token') ?? ''
     };
-    dio.options.baseUrl = data1.urlCourier;
+    dio.options.baseUrl = data1.urlPetshop;
 
-    var response = await dio.get(data1.pathCourierPetshop);
+    var response = await dio.get('');
     List<dynamic> map = response.data;
     List<Petshop> listPetshop = new List();
     for (var i = 0; i < map.length; i++) {

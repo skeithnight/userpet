@@ -3,6 +3,8 @@ import 'package:userpet/screens/widgets/common_drawer.dart';
 import 'package:userpet/screens/widgets/custom_float.dart';
 import 'package:userpet/utils/uidata.dart';
 
+import 'package:userpet/screens/order/order_page.dart';
+
 class CommonScaffold extends StatelessWidget {
   final appTitle;
   final actionApp;
@@ -31,7 +33,7 @@ class CommonScaffold extends StatelessWidget {
       this.floatingIcon,
       this.elevation = 4.0});
 
-  Widget myBottomBar() => BottomAppBar(
+  Widget myBottomBar(context) => BottomAppBar(
         clipBehavior: Clip.antiAlias,
         shape: CircularNotchedRectangle(),
         child: Ink(
@@ -45,27 +47,10 @@ class CommonScaffold extends StatelessWidget {
               SizedBox(
                 height: double.infinity,
                 child: new InkWell(
-                  radius: 10.0,
-                  splashColor: Colors.yellow,
-                  onTap: () {},
-                  child: Center(
-                    child: new Text(
-                      "ADD TO WISHLIST",
-                      style: new TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-              new SizedBox(
-                width: 20.0,
-              ),
-              SizedBox(
-                height: double.infinity,
-                child: new InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => OrderPage()));
+                  },
                   radius: 10.0,
                   splashColor: Colors.yellow,
                   child: Center(
@@ -115,13 +100,16 @@ class CommonScaffold extends StatelessWidget {
                     )
                   : null,
               icon: floatingIcon,
-              qrCallback: () {},
+              qrCallback: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => OrderPage()));
+              },
             )
           : null,
       floatingActionButtonLocation: centerDocked
           ? FloatingActionButtonLocation.centerDocked
           : FloatingActionButtonLocation.endFloat,
-      bottomNavigationBar: showBottomNav ? myBottomBar() : null,
+      bottomNavigationBar: showBottomNav ? myBottomBar(context) : null,
     );
   }
 }
