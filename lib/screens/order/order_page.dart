@@ -9,6 +9,7 @@ import 'package:userpet/screens/shopping/shopping_details/shopping_widget.dart';
 import 'package:userpet/screens/widgets/common_scaffold.dart';
 import 'package:userpet/screens/widgets/login_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_places_picker/google_places_picker.dart';
 
 import 'package:userpet/models/model/petshop_model.dart';
 import 'package:userpet/models/model/order_model.dart';
@@ -16,6 +17,7 @@ import 'package:userpet/controllers/petshop_controller.dart';
 import 'package:userpet/controllers/product_controller.dart';
 import 'package:userpet/models/model/service_model.dart';
 import 'package:userpet/models/model/detail_transaksi_model.dart';
+import 'package:userpet/screens/main_screen.dart';
 
 class OrderPage extends StatefulWidget {
   _OrderPageState createState() => _OrderPageState();
@@ -31,11 +33,33 @@ class _OrderPageState extends State<OrderPage> {
   List<Petshop> listPetshop = new List();
   Order order = new Order();
   String idPetshop;
+  Place _place;
   List<DetailTransaksi> listGroomings = new List();
   List<DetailTransaksi> listClinics = new List();
   List<DetailTransaksi> listHotels = new List();
 
+  var txt = new TextEditingController();
+
   bool isLoading = false;
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  _showPlacePicker() async {
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    Place place = await PluginGooglePlacePicker.showPlacePicker();
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _place = place;
+      order.latitude = place.latitude;
+      order.longitude = place.longitude;
+      order.address = place.address;
+      txt.text = place.address;
+    });
+  }
 
   Widget locationCard() => Container(
         width: double.infinity,
@@ -56,27 +80,45 @@ class _OrderPageState extends State<OrderPage> {
                 SizedBox(
                   height: 5.0,
                 ),
-                new TextField(
-                  keyboardType: TextInputType.number,
-                  autofocus: true,
-                  decoration: new InputDecoration(labelText: "Latitude"),
-                  onChanged: (text) {
-                    setState(() {
-                      order.latitude = double.parse(text);
-                    });
-                  },
+                Container(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    color: Colors.green,
+                    child: Text(
+                      "Pick Location",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      try {
+                        _showPlacePicker();
+                      } catch (e) {
+                        tampilDialog("Alert", "Failed to load location");
+                      }
+                    },
+                  ),
                 ),
-                new TextField(
-                  keyboardType: TextInputType.number,
-                  autofocus: true,
-                  decoration: new InputDecoration(labelText: "Longitude"),
-                  onChanged: (text) {
-                    setState(() {
-                      order.longitude = double.parse(text);
-                    });
-                  },
-                ),
-                new TextField(
+                // new TextField(
+                //   keyboardType: TextInputType.number,
+                //   autofocus: true,
+                //   decoration: new InputDecoration(labelText: "Latitude"),
+                //   onChanged: (text) {
+                //     setState(() {
+                //       order.latitude = double.parse(text);
+                //     });
+                //   },
+                // ),
+                // new TextField(
+                //   keyboardType: TextInputType.number,
+                //   autofocus: true,
+                //   decoration: new InputDecoration(labelText: "Longitude"),
+                //   onChanged: (text) {
+                //     setState(() {
+                //       order.longitude = double.parse(text);
+                //     });
+                //   },
+                // ),
+                new TextField( 
+                  controller: txt,
                   keyboardType: TextInputType.multiline,
                   maxLines: 3,
                   autofocus: true,
@@ -279,6 +321,34 @@ class _OrderPageState extends State<OrderPage> {
           orderWidget()
         ],
       );
+
+  void tampilDialog(String tittle, String message) {
+    showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(tittle),
+          content: new Text(message),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                if (tittle == "Failed") {
+                  Navigator.of(context).pop();
+                } else if (tittle == "Success") {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => MainScreen()));
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
